@@ -15,8 +15,6 @@ namespace NZWalks.API.Controllers
         {
             this.dbContext = dbContext;
         }
-
-
         [HttpGet]
         public IActionResult GetAll()
         {
@@ -38,7 +36,6 @@ namespace NZWalks.API.Controllers
             // Return Dtos
             return Ok(regionsDto);
         }
-
         //GET SINGEL REGION (GET REGION BY ID)
         [HttpGet]
         [Route("{id:Guid}")]
@@ -99,6 +96,37 @@ namespace NZWalks.API.Controllers
 
             return CreatedAtAction(nameof(GetById), new { id = regionDto.Id }, regionDto);
         }
+
+        //Update Regions
+        //PUT: https//localhost:portNumber/api/regions/{id}
+        [HttpPut]
+        [Route("{id:Guid}")]
+        public IActionResult Update([FromRoute] Guid id, [FromBody] UpdateRegionRequestDto updateRegionRequestDto)
+        {
+            var regionDomainModel = dbContext.Regions.FirstOrDefault(x => x.Id == id);
+            if (regionDomainModel == null)
+            {
+                return NotFound();
+            }
+
+            //map dto to domain model
+            regionDomainModel.Code = updateRegionRequestDto.Code;
+            regionDomainModel.Name = updateRegionRequestDto.Name;
+            regionDomainModel.RegionImageUrl = updateRegionRequestDto.RegionImageUrl;
+
+            dbContext.SaveChanges();
+
+            //convert domain model to dto
+            var regionDto = new RegionDto
+            {
+                Id = regionDomainModel.Id,
+                Code = regionDomainModel.Code,
+                Name = regionDomainModel.Name,
+                RegionImageUrl = regionDomainModel.RegionImageUrl
+            };
+            return Ok(regionDto);
+        }
+
 
     }
 }
