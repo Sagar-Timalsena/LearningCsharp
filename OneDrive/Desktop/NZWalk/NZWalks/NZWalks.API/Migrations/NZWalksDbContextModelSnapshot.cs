@@ -28,10 +28,6 @@ namespace NZWalks.API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -39,10 +35,6 @@ namespace NZWalks.API.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Difficulties");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Difficulty");
-
-                    b.UseTphMappingStrategy();
                 });
 
             modelBuilder.Entity("NZWalks.API.Models.Domain.Region", b =>
@@ -69,7 +61,9 @@ namespace NZWalks.API.Migrations
 
             modelBuilder.Entity("NZWalks.API.Models.Domain.Walk", b =>
                 {
-                    b.HasBaseType("NZWalks.API.Models.Domain.Difficulty");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -81,17 +75,23 @@ namespace NZWalks.API.Migrations
                     b.Property<double>("LengthInKm")
                         .HasColumnType("float");
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<Guid>("RegionId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("WalkImageUrl")
                         .HasColumnType("nvarchar(max)");
 
+                    b.HasKey("Id");
+
                     b.HasIndex("DifficultyId");
 
                     b.HasIndex("RegionId");
 
-                    b.HasDiscriminator().HasValue("Walk");
+                    b.ToTable("Walks");
                 });
 
             modelBuilder.Entity("NZWalks.API.Models.Domain.Walk", b =>

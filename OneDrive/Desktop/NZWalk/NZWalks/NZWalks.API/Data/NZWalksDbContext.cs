@@ -5,15 +5,30 @@ namespace NZWalks.API.Data
 {
     public class NZWalksDbContext : DbContext
     {
-        public NZWalksDbContext(DbContextOptions dbContextOptions) : base(dbContextOptions)
+        public NZWalksDbContext(DbContextOptions<NZWalksDbContext> dbContextOptions) : base(dbContextOptions)
         {
 
         }
+
         public DbSet<Difficulty> Difficulties { get; set; }
         public DbSet<Region> Regions { get; set; }
         public DbSet<Walk> Walks { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Walk>()
+                .HasOne(w => w.Difficulty)
+                .WithMany()
+                .HasForeignKey(w => w.DifficultyId);
 
+            modelBuilder.Entity<Walk>()
+                .HasOne(w => w.Region)
+                .WithMany()
+                .HasForeignKey(w => w.RegionId);
 
+            // Other configurations if needed
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }
