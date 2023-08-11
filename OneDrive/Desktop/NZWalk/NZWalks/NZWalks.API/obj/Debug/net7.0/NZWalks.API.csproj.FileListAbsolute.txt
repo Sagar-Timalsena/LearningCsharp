@@ -74,3 +74,5 @@ C:\Users\SAGAR\OneDrive\Desktop\NZWalk\NZWalks\NZWalks.API\obj\Debug\net7.0\refi
 C:\Users\SAGAR\OneDrive\Desktop\NZWalk\NZWalks\NZWalks.API\obj\Debug\net7.0\NZWalks.API.pdb
 C:\Users\SAGAR\OneDrive\Desktop\NZWalk\NZWalks\NZWalks.API\obj\Debug\net7.0\NZWalks.API.genruntimeconfig.cache
 C:\Users\SAGAR\OneDrive\Desktop\NZWalk\NZWalks\NZWalks.API\obj\Debug\net7.0\ref\NZWalks.API.dll
+C:\Users\SAGAR\OneDrive\Desktop\NZWalk\NZWalks\NZWalks.API\bin\Debug\net7.0\AutoMapper.dll
+C:\Users\SAGAR\OneDrive\Desktop\NZWalk\NZWalks\NZWalks.API\bin\Debug\net7.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
