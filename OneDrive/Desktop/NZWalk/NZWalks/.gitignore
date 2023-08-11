@@ -16,10 +16,13 @@
 # Mono auto generated files
 mono_crash.*
 
-# Build results
-Migrations/
+# Ignore specific folders
 bin/
 obj/
+Migrations/
+bin/Debug/net7.0/
+
+# Build results
 [Dd]ebug/
 [Dd]ebugPublic/
 [Rr]elease/

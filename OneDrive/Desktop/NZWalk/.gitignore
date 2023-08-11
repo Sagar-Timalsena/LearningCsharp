@@ -16,6 +16,12 @@
 # Mono auto generated files
 mono_crash.*
 
+# Ignore specific folders
+bin/
+obj/
+Migrations/
+bin/Debug/net7.0/
+
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/
