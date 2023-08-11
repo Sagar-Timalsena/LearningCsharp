@@ -19,12 +19,12 @@ namespace NZWalks.API.Controllers
             this.regionRepository = regionRepository;
         }
         [HttpGet]
-        public async IActionResult GetAll()
+        public IActionResult GetAll()
         {
-            //Get Data From Database -Domain Models
-            var regionsDomain = await regionRepository.GetAllAsync();
+            // Get Data From Database - Domain models
+            var regionsDomain = dbContext.Regions.ToList();
 
-            //Map Domain Models to DTOS
+            // Map Domain Models to DTOs
             var regionsDto = new List<RegionDto>();
             foreach (var regionDomain in regionsDomain)
             {
@@ -36,7 +36,8 @@ namespace NZWalks.API.Controllers
                     RegionImageUrl = regionDomain.RegionImageUrl
                 });
             }
-            // Return Dtos
+
+            // Return DTOs
             return Ok(regionsDto);
         }
         //GET SINGEL REGION (GET REGION BY ID)

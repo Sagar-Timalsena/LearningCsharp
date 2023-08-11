@@ -19,5 +19,10 @@ namespace NZWalks.API.Repositories
             // Using Entity Framework Core's ToListAsync() method to retrieve all regions from the database asynchronously
             return await dbContext.Regions.ToListAsync();
         }
+
+        public async Task<Region?> GetById(Guid id)
+        {
+            dbContext.Regions.FirstOrDefaultAsync(x => x.Id == id);
+        }
     }
 }
